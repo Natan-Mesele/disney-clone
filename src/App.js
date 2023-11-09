@@ -12,15 +12,11 @@ import {
 function App() {
   return (
     <Router>
-    <div className="App">
+      <div className="App">
         <Header />
           <Routes>
-            <Route path="/detail">
-              <Detail />
-            </Route>
-            <Route path="/">
-              <Home/>
-            </Route>
+            <Route path="/detail" element={<Detail/>}></Route>
+            <Route path="/" element={<Home/>}></Route>
           </Routes>
       </div>
     </Router>
