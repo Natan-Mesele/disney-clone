@@ -34,6 +34,7 @@ const Content = styled.div`
     grid-template-columns: repeat(4, minmax(0, 1fr));
 `
 const Wrap = styled.div`
+    margin-bottom: 5rem;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
