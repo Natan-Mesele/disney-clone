@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from "styled-components"
 import ImageSlider from './ImageSlider'
 import Viewers from './Viewers'
 import Movies from './Movies'
 
 function Home() {
+
+  useEffect(()=>{
+    console.log("hello");
+  })
+
   return (
     <Container>
       <ImageSlider/>
