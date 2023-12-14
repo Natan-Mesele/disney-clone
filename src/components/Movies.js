@@ -6,12 +6,14 @@ import { Link } from "react-router-dom";
 function Movies() {
   
   const [movieList, setMovieList] = useState([])
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const getMovie = async () => {
     await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=8b3c8eb7ab57e1f1b000d4886802f6b3")
     .then((res) => {
       console.log(res.data.results)
       setMovieList(res.data.results)
+      setIsLoaded(true);
     })
   }
 
@@ -20,6 +22,8 @@ function Movies() {
   }, [])
 
   return (
+    <div>
+    <h1 style={{fontSize: '16px', color: 'gray', padding: '2rem 0'}}>Recommended for You</h1>
     <Container>
       {movieList.map((movie) => {
       return(
@@ -29,7 +33,7 @@ function Movies() {
        );
       })}
     </Container>
-    
+    </div>
   )
 }
 

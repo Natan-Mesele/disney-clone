@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from "styled-components"
+import { useParams } from "react-router-dom"
 
 function Detail() {
+  const { id } = useParams();
+  const [detailData, setDetailData] = useState({});
+
+  useEffect(() => {
+    
+  })
+
   return (
     <Container>
       <Background>
