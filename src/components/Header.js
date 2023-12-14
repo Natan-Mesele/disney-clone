@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from "styled-components"
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <Nav>
-        <Logo src="img/logo.svg"/>
+        <Link to="/"><Logo src="img/logo.svg"/></Link>
         <NavMenu>
             <a>
                 <img src="img/home-icon.svg"/>

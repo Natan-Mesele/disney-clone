@@ -5,10 +5,10 @@ function Detail() {
   return (
     <Container>
       <Background>
-        <img src="img/back.jpg" />
+        <img src="img/back1.jpeg" />
       </Background>
       <ImageTitle>
-        <img src="img/back.jpg" />
+        <img src="img/back1.jpeg" />
       </ImageTitle>
       <Controls>
         <PlayButton>

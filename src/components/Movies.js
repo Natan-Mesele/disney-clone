@@ -1,48 +1,46 @@
-import React from 'react'
+import React, {useState, useEffect } from 'react'
 import styled from "styled-components"
-import { selectMovies } from '../features/movie/movieSlice'
-import { useSelector } from 'react-redux'
+import axios from "axios"
+import { Link } from "react-router-dom";
 
 function Movies() {
-  const movies = useSelector(selectMovies);
+  
+  const [movieList, setMovieList] = useState([])
 
+  const getMovie = async () => {
+    await axios.get("https://api.themoviedb.org/3/discover/movie?api_key=8b3c8eb7ab57e1f1b000d4886802f6b3")
+    .then((res) => {
+      console.log(res.data.results)
+      setMovieList(res.data.results)
+    })
+  }
+
+  useEffect(() => {
+    getMovie()
+  }, [])
 
   return (
     <Container>
-      <h4>Recommended for you</h4>
-      <Content>
-        { movies && 
-          movies.map((movie)=>{
-            <Wrap>
-              <img src="{movie.cardImg}" />
-            </Wrap>
-          })
-        }
-        
-        <Wrap>
-            <img src="img/viewers-disney.png" />
-        </Wrap>
-        <Wrap>
-            <img src="img/viewers-disney.png" />
-        </Wrap>
-        <Wrap>
-            <img src="img/viewers-disney.png" />
-        </Wrap>
-      </Content>
+      {movieList.map((movie) => {
+      return(
+          <Wrap>
+              <Link to="./detail"><Img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} /></Link>
+          </Wrap>
+       );
+      })}
     </Container>
+    
   )
 }
 
 export default Movies
 
 const Container = styled.div`
-
-`
-const Content = styled.div`
     display: grid;
     gap: 25px;
     grid-template-columns: repeat(4, minmax(0, 1fr));
 `
+
 const Wrap = styled.div`
     margin-bottom: 5rem;
     border-radius: 10px;
@@ -53,12 +51,6 @@ const Wrap = styled.div`
     rgb(0 0 0 /73%) 0px 16px 10px -10px;
     transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
 
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
     &:hover {
         transform: scale(1.05);
         box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
@@ -66,4 +58,10 @@ const Wrap = styled.div`
         border-color: rgba(249, 249, 249, 0.8);
     }
 
+`
+
+const Img = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `
